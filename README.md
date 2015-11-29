@@ -1,8 +1,10 @@
 # Tplink Cli
 
-Ruby cli tool for tplink dsl modem
+Ruby cli tool for tplink dsl modem.
 
-Total alpha + WIP.
+Total alpha + WIP - tested on: 0.6.0 2.10 TD-W8970B
+
+Most useful for traffic statistics for individual hosts.
 
 ```
 gem install tplink-cli
