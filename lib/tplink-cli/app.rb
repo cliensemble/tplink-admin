@@ -7,6 +7,15 @@ module TplinkCli
   class App < Thor
 		package_name 'tpl'
 
+
+    desc "status", "Status"
+    def status
+			payload = "[WAN_DSL_INTF_CFG#1,0,0,0,0,0#0,0,0,0,0,0]0,12\r\nstatus\r\nmodulationType\r\nX_TPLINK_AdslModulationCfg\r\nupstreamCurrRate\r\ndownstreamCurrRate\r\nX_TPLINK_AnnexType\r\nupstreamMaxRate\r\ndownstreamMaxRate\r\nupstreamNoiseMargin\r\ndownstreamNoiseMargin\r\nupstreamAttenuation\r\ndownstreamAttenuation\r\n[WAN_DSL_INTF_STATS_TOTAL#1,0,0,0,0,0#0,0,0,0,0,0]1,8\r\nATUCCRCErrors\r\nCRCErrors\r\nATUCFECErrors\r\nFECErrors\r\nSeverelyErroredSecs\r\nX_TPLINK_US_SeverelyErroredSecs\r\nerroredSecs\r\nX_TPLINK_US_ErroredSecs\r\n"
+      response = Client.post '/cgi?1&5', binary: payload
+      Iniparse.parse(response)["[1,0,0,0,0,0]0"].each do |key,value|
+        puts(sprintf "%-40s %-20s", key, value)
+      end
+    end
     # desc 'config [show|edit|reset]', 'write/edit Configuration'
     # subcommand "config", Config
 
