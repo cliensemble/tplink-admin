@@ -9,7 +9,7 @@ module TplinkCli
     CONFIG_FILE = "#{ENV['HOME']}/.tplinkcli"
 
     def defaults
-      self.hosts ||= []
+      self.hosts ||= {}
       self.hostname_length ||= 16
       self.password ||= 'admin'
       self.url ||= '192.168.0.1'

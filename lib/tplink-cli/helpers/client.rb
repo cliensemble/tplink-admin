@@ -1,6 +1,6 @@
 require 'tplink-cli/configuration'
 # require 'curb'
-require 'pry'
+require 'net/http'
 
 module TplinkCli
   class Client
@@ -31,7 +31,6 @@ module TplinkCli
     end
 
     def self.get(path)
-      require 'pry'
       http = Curl.get("http://#{host}#{path}") do |curl|
         curl.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36'
         curl.headers['Accept-Language'] = 'de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4,zh-CN;q=0.2'
