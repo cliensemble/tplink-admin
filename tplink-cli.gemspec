@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'tplink-cli/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "pludoni_cli"
+  spec.name          = "tplink-cli"
   spec.version       = TplinkCli::VERSION
   spec.authors       = ["Stefan Wienert"]
   spec.email         = ["stwienert@gmail.com"]
