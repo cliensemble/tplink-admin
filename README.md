@@ -1,5 +1,7 @@
 # Tplink Cli
 
+[![Gem Version](https://badge.fury.io/rb/tplink-cli.svg)](https://badge.fury.io/rb/tplink-cli)
+
 Ruby cli tool for tplink dsl modem.
 
 Total alpha + WIP - tested on: 0.6.0 2.10 TD-W8970B
