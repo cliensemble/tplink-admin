@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{cli-tools for tplink routers development}
   spec.description   = %q{cli-tools for tplink routers development}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/zealot128/tplink-cli"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -26,10 +26,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'activesupport', '>= 3.2.0'
-  spec.add_dependency 'colored'
+  # spec.add_dependency 'activesupport', '>= 3.2.0'
+  # spec.add_dependency 'colored'
   spec.add_dependency 'thor'
-  spec.add_dependency 'curb'
   # spec.add_dependency 'hashie'
   # spec.add_dependency 'faraday'
   spec.add_development_dependency "rake", "~> 10.0"
