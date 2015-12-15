@@ -2,18 +2,17 @@ require 'thor'
 require 'tplink-cli/helpers/iniparse'
 require 'tplink-cli/helpers/client'
 require 'base64'
+require 'net/http'
 
 module TplinkCli
   class App < Thor
 		package_name 'tpl'
-
 
     desc "config", "Create config and edit with $EDITOR"
     def config
       Configuration.save
       exec "$EDITOR #{ENV['HOME']}/.tplinkcli"
     end
-
 
     desc "status", "Status"
     def status
@@ -75,6 +74,18 @@ module TplinkCli
         puts(sprintf "%-16s %#{length}s %8.1f kb/10s %6.1f kb/s",  host[:ip_address], string, host[:current_bytes] / 1024, host[:current_bytes] / 10024)
       end
       Configuration.save
+    end
+    
+    desc "reboot", "Reinicia o modem"
+    def reboot
+      uri = URI("http://ipinfo.io/ip")
+      req = Net::HTTP::Get.new(uri)
+      req.basic_auth Configuration.username, Configuration.password
+      
+      res = Net::HTTP.start(uri.hostname, uri.port) {|http|
+        http.request(req)
+      }
+      puts res.body
     end
 
     private

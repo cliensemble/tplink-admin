@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tplink-cli (0.0.2)
+    tplink-cli (0.0.5)
       thor
 
 GEM
@@ -27,4 +27,4 @@ DEPENDENCIES
   tplink-cli!
 
 BUNDLED WITH
-   1.10.5
+   1.11.1
