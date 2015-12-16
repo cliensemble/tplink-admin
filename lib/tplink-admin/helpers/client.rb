@@ -1,11 +1,14 @@
 require 'tplink-admin/configuration'
-# require 'curb'
 require 'net/http'
 
 module TplinkAdmin
   class Client
+    def self.username
+      Configuration.instance.username
+    end
+    
     def self.password
-      Base64.urlsafe_encode64 Configuration.instance.password
+      Configuration.instance.password
     end
 
     def self.host
