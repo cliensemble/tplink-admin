@@ -14,7 +14,9 @@ module TplinkAdmin
       if ENV['EDITOR'] != ""
         exec "$EDITOR #{ENV['HOME']}/.tplinkadmin"
       else
-        puts "Please set your $EDITOR var"
+        puts "$EDITOR is not set. Please type your editor:"
+        editor = STDIN.gets.chomp
+        exec "#{editor} #{ENV['HOME']}/.tplinkadmin"
       end
     end
 
