@@ -11,7 +11,7 @@ module TplinkAdmin
     desc "config", "Create config and edit with $EDITOR"
     def config
       Configuration.save
-      if ENV['EDITOR'] != ""
+      if ENV['EDITOR'] != "" && !ENV['EDITOR'].nil?
         exec "$EDITOR #{ENV['HOME']}/.tplinkadmin"
       else
         puts "$EDITOR is not set. Please type your editor:"
@@ -74,7 +74,7 @@ module TplinkAdmin
 
     desc "reboot", "Reinicia o modem"
     def reboot
-      uri = URI("http://#{Configuration.instance.url}")
+      uri = URI("http://#{Configuration.instance.url}/userRpm/SysRebootRpm.htm?Reboot=Reboot")
       # Redirecionamento de portas: http://192.168.1.1/userRpm/VirtualServerRpm.htm?Port=3383&Ip=192.168.1.104&Protocol=1&State=1&Commonport=0&Changed=0&SelIndex=0&Save=Save
       # Reboot: http://192.168.0.2/userRpm/SysRebootRpm.htm?Reboot=Reboot
       req = Net::HTTP::Get.new(uri)
