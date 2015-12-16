@@ -11,7 +11,7 @@ module TplinkAdmin
     desc "config", "Create config and edit with $EDITOR"
     def config
       Configuration.save
-      if ENV['EDITOR'] != "" && !ENV['EDITOR'].nil?
+      if !ENV['EDITOR'].to_s.empty? && !ENV['EDITOR'].nil?
         exec "$EDITOR #{ENV['HOME']}/.tplinkadmin"
       else
         puts "$EDITOR is not set. Please type your editor:"
