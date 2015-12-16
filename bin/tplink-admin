@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require 'tplink-admin'
+
+config = TplinkAdmin::Configuration.instance
+
+TplinkAdmin::App.start
+

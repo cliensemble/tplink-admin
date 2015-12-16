@@ -1,4 +1,4 @@
-module TplinkCli
+module TplinkAdmin
   class Iniparse
     def initialize(string)
       @string = string

@@ -1,16 +1,16 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'tplink-cli/version'
+require 'tplink-admin/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "tplink-cli"
-  spec.version       = TplinkCli::VERSION
-  spec.authors       = ["Stefan Wienert"]
-  spec.email         = ["stwienert@gmail.com"]
+  spec.name          = "tplink-admin"
+  spec.version       = TplinkAdmin::VERSION
+  spec.authors       = ["Rodrigo Muniz"]
+  spec.email         = ["rodrigo.temiski1995@gmail.com"]
 
-  spec.summary       = %q{cli-tools for tplink routers development}
-  spec.description   = %q{cli-tools for tplink routers development}
-  spec.homepage      = "https://github.com/zealot128/tplink-cli"
+  spec.summary       = %q{CLI interface for TpLink router administration}
+  spec.description   = %q{manage your TpLink router easily with this tool}
+  spec.homepage      = "https://github.com/muniz95/tplink-admin"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or

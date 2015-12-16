@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-require "bundler/setup"
-require 'tplink-cli'
-
-config = TplinkCli::Configuration.instance
-
-TplinkCli::App.start
-

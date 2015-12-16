@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tplink-cli (0.0.5)
+    tplink-admin (0.0.5)
       thor
 
 GEM
@@ -24,7 +24,7 @@ DEPENDENCIES
   bundler (~> 1.10)
   pry
   rake (~> 10.0)
-  tplink-cli!
+  tplink-admin!
 
 BUNDLED WITH
    1.11.1

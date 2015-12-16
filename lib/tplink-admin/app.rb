@@ -1,17 +1,21 @@
 require 'thor'
-require 'tplink-cli/helpers/iniparse'
-require 'tplink-cli/helpers/client'
+require 'tplink-admin/helpers/iniparse'
+require 'tplink-admin/helpers/client'
 require 'base64'
 require 'net/http'
 
-module TplinkCli
+module TplinkAdmin
   class App < Thor
 		package_name 'tpl'
 
     desc "config", "Create config and edit with $EDITOR"
     def config
       Configuration.save
-      exec "$EDITOR #{ENV['HOME']}/.tplinkcli"
+      if ENV['EDITOR'] != ""
+        exec "$EDITOR #{ENV['HOME']}/.tplinkadmin"
+      else
+        puts "Please set your $EDITOR var"
+      end
     end
 
     desc "status", "Status"

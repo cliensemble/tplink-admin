@@ -1,8 +1,8 @@
-require 'tplink-cli/configuration'
+require 'tplink-admin/configuration'
 # require 'curb'
 require 'net/http'
 
-module TplinkCli
+module TplinkAdmin
   class Client
     def self.password
       Base64.urlsafe_encode64 Configuration.instance.password

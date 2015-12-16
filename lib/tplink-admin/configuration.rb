@@ -1,5 +1,5 @@
 require 'yaml'
-module TplinkCli
+module TplinkAdmin
   class Configuration
     attr_accessor :url
     attr_accessor :username
@@ -7,7 +7,7 @@ module TplinkCli
     attr_accessor :hostname_length
     attr_accessor :hosts
 
-    CONFIG_FILE = "#{ENV['HOME']}/.tplinkcli"
+    CONFIG_FILE = "#{ENV['HOME']}/.tplinkadmin"
 
     def defaults
       self.hosts ||= {}

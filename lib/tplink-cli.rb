@@ -1,11 +1,9 @@
-require 'tplink-cli/app'
-require 'tplink-cli/version'
-require 'tplink-cli/configuration'
+require 'tplink-admin/app'
+require 'tplink-admin/version'
+require 'tplink-admin/configuration'
 
-module TplinkCli
+module TplinkAdmin
   def self.config
-    TplinkCli::Configuration.instance
+    TplinkAdmin::Configuration.instance
   end
-
-
 end
