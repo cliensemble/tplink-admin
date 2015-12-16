@@ -29,17 +29,7 @@ module TplinkAdmin
       end
       Configuration.save
     end
-    # desc 'config [show|edit|reset]', 'write/edit Configuration'
-    # subcommand "config", Config
-
-    # desc 'stundenzettel [process|status]', 'Redmine timetracking'
-    # subcommand "stundenzettel", PludoniCli::CLI::Stundenzettel
-
-    # register PludoniCli::CLI::Cap, 'cap', 'cap [*tasks]', 'Capistrano commands on live env'
-    # register(ProjectStatus, 'status', 'status [WORKDIR]', 'Project Status / Git updates')
-
-    # desc "dev_update [database|assets]", "Datenbankdump / Assets aus dem letzten Backup reinkopieren"
-    # subcommand 'dev_update', PludoniCli::CLI::DevUpdate
+    
     desc "hosts", "show hostnames that are connected"
     def hosts
       payload = "[LAN_HOST_ENTRY#0,0,0,0,0,0#0,0,0,0,0,0]0,4\r\nleaseTimeRemaining\r\nMACAddress\r\nhostName\r\nIPAddress\r\n"
