@@ -1,17 +1,20 @@
-# Tplink Cli
+# Tplink Admin
 
 [![Gem Version](https://badge.fury.io/rb/tplink-admin.svg)](https://badge.fury.io/rb/tplink-admin)
 
-Ruby cli tool for tplink dsl modem.
+Ruby cli tool for tplink dsl modem administration.
 
-Total alpha + WIP - tested on: 0.6.0 2.10 TD-W8970B
+This project is in alpha stage - tested on: TL-WR741N
 
-Most useful for traffic statistics for individual hosts.
+## How to install
 
 ```
-gem install tplink-admin
+git clone https://github.com/muniz95/tplink-admin
+cd tplink-admin && bundle install
+gem build tplink-admin.gemspec && gem install tplink-admin-X.X.X.gem
 ```
 
+This gem will be avaliable at rubygems soon.
 
 ## Commands
 
@@ -21,24 +24,7 @@ Create config file and open in $EDITOR
 tplink-admin config
 ```
 
-Show DSL connection infos
-
-```
-tplink-admin status
-```
-
-
-Show traffic consumption of all connected hosts (traffic control need to be activated in Router menu (statistics))
-
-```
-tplink-admin traffic
-```
-
-Resolve hostnames of connected mac-addresses (saves to config file, so traffic command will display that hostnames for the next commands)
-
-```
-tplink-admin hosts
-```
-
-All commands use & modify ``~/.tplinkcli``. change the url / password of your router.
+All commands use & modify ``~/.tplinkadmin``. change the url / password of your router.
 You can also add ``:name: "..."`` attributes to hosts, if you want to overwrite the ``host_name`` in traffic view
+
+## Other commands in progress
