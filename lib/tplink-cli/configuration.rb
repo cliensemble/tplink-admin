@@ -2,6 +2,7 @@ require 'yaml'
 module TplinkCli
   class Configuration
     attr_accessor :url
+    attr_accessor :username
     attr_accessor :password
     attr_accessor :hostname_length
     attr_accessor :hosts
@@ -11,6 +12,7 @@ module TplinkCli
     def defaults
       self.hosts ||= {}
       self.hostname_length ||= 16
+      self.username ||= 'admin'
       self.password ||= 'admin'
       self.url ||= '192.168.0.1'
     end

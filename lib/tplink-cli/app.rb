@@ -75,17 +75,19 @@ module TplinkCli
       end
       Configuration.save
     end
-    
+
     desc "reboot", "Reinicia o modem"
     def reboot
-      uri = URI("http://ipinfo.io/ip")
+      uri = URI("http://192.168.2.1")
       req = Net::HTTP::Get.new(uri)
-      req.basic_auth Configuration.username, Configuration.password
-      
-      res = Net::HTTP.start(uri.hostname, uri.port) {|http|
-        http.request(req)
-      }
-      puts res.body
+      c = Client.new
+      puts c.host
+      # req.basic_auth "admin", "admin"
+      #
+      # res = Net::HTTP.start(uri.hostname, uri.port) {|http|
+      #   http.request(req)
+      # }
+      # puts res.body
     end
 
     private
