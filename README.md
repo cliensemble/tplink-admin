@@ -3,6 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/tplink-admin.svg)](https://badge.fury.io/rb/tplink-admin)
 
 Ruby cli tool for tplink dsl modem administration.
+Based on [zealot128's tplink-cli](https://github.com/zealot128/tplink-cli) project, but more focused on simple management of TpLink modems.
 
 This project is in alpha stage - tested on: TL-WR741N
 
