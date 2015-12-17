@@ -9,13 +9,21 @@ This project is in alpha stage - tested on: TL-WR741N
 
 ## How to install
 
+  **You have to install libcurl4-gnutls-dev first in order to make all work.**
+
+Easy way or for personal use only: 
+
+```
+gem install tplink-admin
+```
+
+The dev way:
+
 ```
 git clone https://github.com/muniz95/tplink-admin
 cd tplink-admin && bundle install
 gem build tplink-admin.gemspec && gem install tplink-admin-X.X.X.gem
 ```
-
-This gem will be avaliable at rubygems soon.
 
 ## Commands
 
