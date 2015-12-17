@@ -30,7 +30,6 @@ Gem::Specification.new do |spec|
   # spec.add_dependency 'colored'
   spec.add_dependency 'thor'
   spec.add_dependency 'curb'
-  spec.add_dependency 'nokogiri'
   # spec.add_dependency 'hashie'
   # spec.add_dependency 'faraday'
   spec.add_development_dependency "rake", "~> 10.0"
