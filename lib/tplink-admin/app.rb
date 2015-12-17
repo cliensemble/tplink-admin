@@ -2,7 +2,7 @@ require 'thor'
 require 'tplink-admin/helpers/iniparse'
 require 'tplink-admin/helpers/client'
 require 'base64'
-require 'net/http'
+require 'nokogiri'
 
 module TplinkAdmin
   class App < Thor
@@ -20,16 +20,16 @@ module TplinkAdmin
       end
     end
 
-    desc "status", "Status"
-    def status
-			payload = "[WAN_DSL_INTF_CFG#1,0,0,0,0,0#0,0,0,0,0,0]0,12\r\nstatus\r\nmodulationType\r\nX_TPLINK_AdslModulationCfg\r\nupstreamCurrRate\r\ndownstreamCurrRate\r\nX_TPLINK_AnnexType\r\nupstreamMaxRate\r\ndownstreamMaxRate\r\nupstreamNoiseMargin\r\ndownstreamNoiseMargin\r\nupstreamAttenuation\r\ndownstreamAttenuation\r\n[WAN_DSL_INTF_STATS_TOTAL#1,0,0,0,0,0#0,0,0,0,0,0]1,8\r\nATUCCRCErrors\r\nCRCErrors\r\nATUCFECErrors\r\nFECErrors\r\nSeverelyErroredSecs\r\nX_TPLINK_US_SeverelyErroredSecs\r\nerroredSecs\r\nX_TPLINK_US_ErroredSecs\r\n"
-      response = Client.post '/cgi?1&5', binary: payload
-      Iniparse.parse(response)["[1,0,0,0,0,0]0"].each do |key,value|
-        puts(sprintf "%-40s %-20s", key, value)
-      end
-      Configuration.save
-    end
-    
+    # desc "status", "Status"
+    # def status
+		# 	payload = "[WAN_DSL_INTF_CFG#1,0,0,0,0,0#0,0,0,0,0,0]0,12\r\nstatus\r\nmodulationType\r\nX_TPLINK_AdslModulationCfg\r\nupstreamCurrRate\r\ndownstreamCurrRate\r\nX_TPLINK_AnnexType\r\nupstreamMaxRate\r\ndownstreamMaxRate\r\nupstreamNoiseMargin\r\ndownstreamNoiseMargin\r\nupstreamAttenuation\r\ndownstreamAttenuation\r\n[WAN_DSL_INTF_STATS_TOTAL#1,0,0,0,0,0#0,0,0,0,0,0]1,8\r\nATUCCRCErrors\r\nCRCErrors\r\nATUCFECErrors\r\nFECErrors\r\nSeverelyErroredSecs\r\nX_TPLINK_US_SeverelyErroredSecs\r\nerroredSecs\r\nX_TPLINK_US_ErroredSecs\r\n"
+    #   response = Client.post '/cgi?1&5', binary: payload
+    #   Iniparse.parse(response)["[1,0,0,0,0,0]0"].each do |key,value|
+    #     puts(sprintf "%-40s %-20s", key, value)
+    #   end
+    #   Configuration.save
+    # end
+
     desc "hosts", "show hostnames that are connected"
     def hosts
       payload = "[LAN_HOST_ENTRY#0,0,0,0,0,0#0,0,0,0,0,0]0,4\r\nleaseTimeRemaining\r\nMACAddress\r\nhostName\r\nIPAddress\r\n"
@@ -74,19 +74,16 @@ module TplinkAdmin
 
     desc "reboot", "Reinicia o modem"
     def reboot
-      uri = URI("http://#{Client.host}/userRpm/SysRebootRpm.htm?Reboot=Reboot")
-      # Redirecionamento de portas: http://192.168.1.1/userRpm/VirtualServerRpm.htm?Port=3383&Ip=192.168.1.104&Protocol=1&State=1&Commonport=0&Changed=0&SelIndex=0&Save=Save
-      # Reboot: http://192.168.0.2/userRpm/SysRebootRpm.htm?Reboot=Reboot
-      req = Net::HTTP::Get.new(uri)
-      user = Client.username
-      pass = Client.password
-      req.basic_auth user, pass
-      
-      res = Net::HTTP.start(uri.hostname, uri.port) {|http|
-        http.request(req)
-      }
-      puts res.body
+      result = Client.get "SysRebootRpm.htm?Reboot=Reboot"
+      puts result.status
     end
+
+    # desc "status", "Status do modem"
+    # def status
+    #   result = Client.get "StatusRpm.htm"
+    #   puts result.status
+    #   # Redirecionamento de portas: http://192.168.1.1/userRpm/VirtualServerRpm.htm?Port=3383&Ip=192.168.1.104&Protocol=1&State=1&Commonport=0&Changed=0&SelIndex=0&Save=Save
+    # end
 
     private
     def num2ip(num)
