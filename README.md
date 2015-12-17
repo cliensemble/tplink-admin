@@ -25,7 +25,12 @@ Create config file and open in $EDITOR
 tplink-admin config
 ```
 
-All commands use & modify ``~/.tplinkadmin``. change the url / password of your router.
-You can also add ``:name: "..."`` attributes to hosts, if you want to overwrite the ``host_name`` in traffic view
+Reboot your router
+
+```
+tplink-admin reboot
+```
+
+All commands use or modify ``~/.tplinkadmin``. change the url / password of your router.
 
 ## Other commands in progress
