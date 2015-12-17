@@ -2,7 +2,6 @@ require 'thor'
 require 'tplink-admin/helpers/iniparse'
 require 'tplink-admin/helpers/client'
 require 'base64'
-require 'nokogiri'
 
 module TplinkAdmin
   class App < Thor
@@ -77,13 +76,6 @@ module TplinkAdmin
       result = Client.get "SysRebootRpm.htm?Reboot=Reboot"
       puts result.status
     end
-
-    # desc "status", "Status do modem"
-    # def status
-    #   result = Client.get "StatusRpm.htm"
-    #   puts result.status
-    #   # Redirecionamento de portas: http://192.168.1.1/userRpm/VirtualServerRpm.htm?Port=3383&Ip=192.168.1.104&Protocol=1&State=1&Commonport=0&Changed=0&SelIndex=0&Save=Save
-    # end
 
     private
     def num2ip(num)

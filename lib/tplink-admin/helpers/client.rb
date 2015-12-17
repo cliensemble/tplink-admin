@@ -1,5 +1,4 @@
 require 'tplink-admin/configuration'
-require "curb"
 require 'net/http'
 
 module TplinkAdmin
@@ -36,26 +35,17 @@ module TplinkAdmin
     end
 
     def self.get(path)
-      http = Curl.get("http://#{host}/userRpm/#{path}") do |curl|
-        curl.username = username
-        curl.password = password
-        curl.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36'
-        curl.headers['Accept-Language'] = 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4,zh-CN;q=0.2'
-        curl.headers['Accept-Encoding'] = 'gzip, deflate, sdch'
-        curl.headers['Content-Type'] = 'text/plain'
-        curl.headers['Accept'] = '*/*'
-        curl.headers['Referer'] = "http://#{host}/"
-        curl.headers['Cookie'] = "Authorization=Basic #{password}"
-        curl.headers['Connection'] = 'keep-alive'
-        # curl.on_success {|easy| puts easy }
-        # curl.on_failure {|easy| puts easy }
-      end
-      if http.status.to_i > 399
-        $stderr.puts "Invalid statuscode: #{http.status}"
-        $stderr.puts http.body
-        exit 1
-      end
-      http
+      uri = URI("http://#{host}/userRpm/#{path}")
+      # Redirecionamento de portas: http://192.168.1.1/userRpm/VirtualServerRpm.htm?Port=3383&Ip=192.168.1.104&Protocol=1&State=1&Commonport=0&Changed=0&SelIndex=0&Save=Save
+      # Reboot: http://192.168.0.2/userRpm/SysRebootRpm.htm?Reboot=Reboot
+      req = Net::HTTP::Get.new(uri)
+      req.basic_auth username, password
+      
+      res = Net::HTTP.start(uri.hostname, uri.port) {|http|
+        http.request(req)
+      }
+      
+      res
     end
 
   end
